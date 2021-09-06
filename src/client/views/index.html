@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Travel Planning App</title>
+        <style>
+            input:invalid {
+                border: 3px solid red;
+            }
+
+        </style>
+        
+    </head>
+
+    <body>
+
+        <header>
+            <div class="logo">
+                Travel Planner App
+            </div>
+        </header>
+
+        <main>
+            <section class="form-section">
+                <form class="travel-info-form">
+                    <label for="location">Destination</label>
+                    <input id="location" type="text" name="location" value="" placeholder="Where are you going?">
+                    <label for="date">Date</label>
+                    <input id="date" type="date" name="date" max="2121-01-01" value="" placeholder="Add date?">
+                    
+                    <input type="submit" class="form-button" name="" value="submit">
+                </form>
+            </section>
+
+           <section class="info-display-section">
+               
+            </section> 
+        </main>
+
+        <footer>
+            <p>This is a footer</p>
+        </footer>
+        <script>
+//             if ('serviceWorker' in navigator) {
+//     window.addEventListener('load', () => {
+//     navigator.serviceWorker.register('/service-worker.js').then(registration => {
+//         console.log('SW registered: ', registration);
+//     }).catch(registrationError => {
+//     console.log('SW registration failed: ', registrationError);
+//     });
+//     });
+// }
+        </script>
+        
+    </body>
+</html>
