@@ -1,4 +1,4 @@
-require("regenerator-runtime/runtime")
+// require("regenerator-runtime/runtime")
 
 // POST form data to server and wait for travel and return travel info
 const serverRequest = async (data) => {
