@@ -20,21 +20,13 @@ app.get('/', function (req, res) {
 })
 
 // designates what port the app will listen to for incoming requests
-app.listen(8081, function () {
-    console.log('Example app listening on port 8081!')
+app.listen(8082, function () {
+    console.log('Example app listening on port 8082!')
 })
 
 
-app.post('/result', async (req, res) => {
-    const apiKey = process.env.apiKey
-    console.log(req.body, apiKey)
-    const response = await fetch();
-    try {
-        // console.log(response.json())
-        const result = await response.json()
-        // console.log(result.confidence)
-        res.send(result)
-    } catch (error) {
-        console.log('error', error)
-    }
+app.post('/travel-info', (req, res) => {
+    console.log(req.body)
+    res.send({data: 'received'})
+    
 })
