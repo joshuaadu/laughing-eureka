@@ -8,9 +8,19 @@ const setDateInputAttributes = () => {
     const dateInput = document.getElementById('date')
     dateInput.setAttribute('min', `${year}-${month}-${day}`)
     dateInput.setAttribute('max', '2100-01-01')
+    dateInput.setAttribute('pattern', '\d{4}-\d{2}-\d{2}')
     dateInput.value = `${month}/${day}/${year}`
 }
 
+// Use Constraint Validation API
+const checkDateInput = () => {
+    dateInput.addEventListener('input', () => {
+        destination.setCustomValidity('')
+        destination.checkValidity()
+    })
+}
+
 export {
-    setDateInputAttributes
+    setDateInputAttributes,
+    checkDateInput
 }
