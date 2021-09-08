@@ -26,7 +26,56 @@ app.listen(8082, function () {
 
 
 app.post('/travel-info', (req, res) => {
+    let destinationData = {}
+    const destination = req.body.destination
     console.log(req.body)
-    res.send({data: 'received'})
+    getGeoData(destination)
+    .then(data => {
+        Object.assign(destinationData, data.geonames[0])
+        // console.log(data.geonames[0])
+        return [data.geonames[0].lat, data.geonames[0].lng]
+    })
+    .then(([lat, lon]) => getWeatherData(lat, lon))
+    .then(result => {
+        Object.assign(destinationData, {
+            sunrise: result.data[0].sunrise,
+            sunset: result.data[0].sunset,
+            timezone: result.data[0].timezone,
+            presure: result.data[0].pres,
+            wind_speed: result.data[0].wind_spd,
+            temp: result.data[0].temp,
+            apparent_temp: result.app_temp,
+            weather: result.data[0].weather.description,
+            weather_icon: result.data[0].weather.icon
+        })
+        res.send(destinationData)
+    })
+    // res.send()
     
 })
+
+
+// Get geographic data
+const getGeoData = async (name) => {
+    const username = process.env.geoNameUsername
+    const geoNameURL = `http://api.geonames.org/search?name=${name}&maxRows=1&type=json&username=${username}`
+    const response = await fetch (encodeURI(geoNameURL))
+    try {
+        return await response.json()
+    } catch (error) {
+        console.log('error', error)
+    }
+}
+
+// Get weather data
+const getWeatherData = async (lat,lon) => {
+    const apiKey = process.env.weatherBitApiKey
+    const url = `https://api.weatherbit.io/v2.0/current?key=${apiKey}&lat=${lat}&lon=${lon}`
+    // console.log(lat, lon)
+    const response = await fetch (encodeURI(url))
+    try {
+        return await response.json()
+    } catch (error) {
+        console.log('error', error)
+    }
+}
