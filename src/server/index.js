@@ -97,15 +97,22 @@ const getWeatherData = async (lat,lon) => {
 }
 
 // Get destination image
-const getDestinationImage = async (destination) => {
+async function getDestinationImage (destination, failed = false) {
     const apiKey = process.env.pixabayApiKey
-    const destinationName = destination.name
+    let destinationName = destination.name
+    console.log('failed', failed)
+    if(failed) destinationName = destination.countryName
     const url = `https://pixabay.com/api/?key=${apiKey}&q=${destinationName}&category=places&image_type=photo&pretty=true`
     console.log(destination.name, destination.countryName)
     const response = await fetch (encodeURI(url))
     try {
         const result = await response.json()
-        destination.image = result.hits[0].webformatURL
+        console.log(result.total)
+        if(result.total == 0) getDestinationImage(destination, true)
+        else {
+            destination.image = result.hits[0].webformatURL
+            console.log(result.hits[0].webformatURL)
+        }
     } catch (error) {
         console.log('error', error)
 
