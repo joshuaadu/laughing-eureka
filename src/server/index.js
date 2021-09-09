@@ -12,6 +12,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(express.static('dist'))
 
+
 console.log(__dirname)
 
 app.get('/', function (req, res) {
@@ -28,28 +29,43 @@ app.listen(8082, function () {
 app.post('/travel-info', (req, res) => {
     let destinationData = {}
     const destination = req.body.destination
-    console.log(req.body)
+    destinationData.countDown = req.body.countDown
+
+    // Get geographic data
     getGeoData(destination)
     .then(data => {
+        // Save geo data to destination data
         Object.assign(destinationData, data.geonames[0])
         // console.log(data.geonames[0])
+        console.log(destinationData)
         return [data.geonames[0].lat, data.geonames[0].lng]
     })
-    .then(([lat, lon]) => getWeatherData(lat, lon))
-    .then(result => {
-        Object.assign(destinationData, {
-            sunrise: result.data[0].sunrise,
-            sunset: result.data[0].sunset,
-            timezone: result.data[0].timezone,
-            presure: result.data[0].pres,
-            wind_speed: result.data[0].wind_spd,
-            temp: result.data[0].temp,
-            apparent_temp: result.app_temp,
-            weather: result.data[0].weather.description,
-            weather_icon: result.data[0].weather.icon
-        })
-        res.send(destinationData)
+    .then(([lat, lon]) => {
+        // Get weather data and image of destination
+        return Promise.all([getWeatherData(lat, lon), getDestinationImage(destinationData)])
     })
+    .then(results => {
+        console.log(results)
+        const weatherResult = results[0].data[0]
+        // Save weather data to destination data
+        Object.assign(destinationData, {
+            sunrise: weatherResult.sunrise,
+            sunset: weatherResult.sunset,
+            timezone: weatherResult.timezone,
+            presure: weatherResult.pres,
+            wind_speed: weatherResult.wind_spd,
+            temp: weatherResult.temp,
+            apparent_temp: weatherResult.app_temp,
+            weather: weatherResult.weather.description,
+            icon: weatherResult.weather.icon
+        })
+        res.send(destinationData)   
+    }).catch(error => {
+        // Report search parameter not found
+        res.send({result:"Location not found", found:false})
+        console.log('error', error, "\nLocation not found")
+    })
+    
     // res.send()
     
 })
@@ -77,5 +93,21 @@ const getWeatherData = async (lat,lon) => {
         return await response.json()
     } catch (error) {
         console.log('error', error)
+    }
+}
+
+// Get destination image
+const getDestinationImage = async (destination) => {
+    const apiKey = process.env.pixabayApiKey
+    const destinationName = destination.name
+    const url = `https://pixabay.com/api/?key=${apiKey}&q=${destinationName}&category=places&image_type=photo&pretty=true`
+    console.log(destination.name, destination.countryName)
+    const response = await fetch (encodeURI(url))
+    try {
+        const result = await response.json()
+        destination.image = result.hits[0].webformatURL
+    } catch (error) {
+        console.log('error', error)
+
     }
 }
