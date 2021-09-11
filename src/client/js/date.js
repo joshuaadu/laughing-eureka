@@ -8,7 +8,7 @@ const setDateInputAttributes = () => {
     dateInput.setAttribute('min', today())
     dateInput.setAttribute('max', '2100-01-01')
     dateInput.setAttribute('pattern', '\d{4}-\d{2}-\d{2}')
-    dateInput.value = `${month}/${day}/${year}`
+    dateInput.value = today();
     console.log('custom date set')
 }
 

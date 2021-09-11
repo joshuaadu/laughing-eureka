@@ -8,20 +8,23 @@
     <body>
 
         <header>
-            <div class="logo">
+            <h1 class="logo">
                 Travel Planner App
-            </div>
+            </h1>
         </header>
 
         <main>
             <section class="form-section">
                 <form class="travel-info-form">
-                    <label for="destination">Destination</label>
-                    <input id="destination" type="text" name="destination" value="" placeholder="Where are you going?" required>
-                    <label for="date">Date</label>
-                    <input id="date" type="date" name="date" value="" placeholder="Add date?" required>
-                    
-                    <input type="submit" class="form-button" name="" value="submit">
+                    <div class="input-wrapper">
+                        <label for="destination">Destination</label>
+                        <input id="destination" type="text" name="destination" value="" placeholder="Where are you going?" required>
+                    </div>
+                    <div class="input-wrapper">
+                        <label for="date">Date</label>
+                        <input id="date" type="date" name="date" value="" placeholder="Add date?" required>
+                    </div>
+                    <input type="submit" class="form-button" name="" value="Go!">
                 </form>
             </section>
 
