@@ -1,35 +1,51 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title>Travel Planning App</title>
-    </head>
+	<head>
+		<meta charset="utf-8" />
+		<title>Travel Planning App</title>
+	</head>
 
-    <body>
+	<body>
+		<header>
+			<h1 class="logo">Travel Planner App</h1>
+		</header>
 
-        <header>
-            <h1 class="logo">
-                Travel Planner App
-            </h1>
-        </header>
+		<main>
+			<section class="form-section">
+				<form class="travel-info-form">
+					<div class="input-wrapper">
+						<label for="destination">Destination</label>
+						<input
+							id="destination"
+							type="text"
+							name="destination"
+							value=""
+							placeholder="Where are you going?"
+							required
+						/>
+					</div>
+					<div class="input-wrapper">
+						<label for="date">Date</label>
+						<input
+							id="date"
+							type="date"
+							name="date"
+							value=""
+							placeholder="Add date?"
+							required
+						/>
+					</div>
+					<input
+						type="submit"
+						class="form-button"
+						name=""
+						value="Let's Go!"
+					/>
+				</form>
+			</section>
 
-        <main>
-            <section class="form-section">
-                <form class="travel-info-form">
-                    <div class="input-wrapper">
-                        <label for="destination">Destination</label>
-                        <input id="destination" type="text" name="destination" value="" placeholder="Where are you going?" required>
-                    </div>
-                    <div class="input-wrapper">
-                        <label for="date">Date</label>
-                        <input id="date" type="date" name="date" value="" placeholder="Add date?" required>
-                    </div>
-                    <input type="submit" class="form-button" name="" value="Go!">
-                </form>
-            </section>
-
-           <section class="trip-display-section">
-               <!-- <div class="trip-info-card">
+			<section class="trip-display-section">
+				<!-- <div class="trip-info-card">
                    <div class="destination-geo-info">
                        <img class="destination-image" src="" alt="">
                        <div class="main-info">
@@ -45,24 +61,22 @@
 
                    </div>
                </div> -->
-               
-            </section> 
-        </main>
+			</section>
+		</main>
 
-        <footer>
-            <p>This is a footer</p>
-        </footer>
-        <script>
-//             if ('serviceWorker' in navigator) {
-//     window.addEventListener('load', () => {
-//     navigator.serviceWorker.register('/service-worker.js').then(registration => {
-//         console.log('SW registered: ', registration);
-//     }).catch(registrationError => {
-//     console.log('SW registration failed: ', registrationError);
-//     });
-//     });
-// }
-        </script>
-         
-    </body>
+		<footer>
+			<p>This is a footer</p>
+		</footer>
+		<script>
+			//             if ('serviceWorker' in navigator) {
+			//     window.addEventListener('load', () => {
+			//     navigator.serviceWorker.register('/service-worker.js').then(registration => {
+			//         console.log('SW registered: ', registration);
+			//     }).catch(registrationError => {
+			//     console.log('SW registration failed: ', registrationError);
+			//     });
+			//     });
+			// }
+		</script>
+	</body>
 </html>

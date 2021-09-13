@@ -1,41 +1,51 @@
 .travel-info-form {
-    border: 1px solid #545454;
-    border-radius: 2rem;
-    padding: 0.5rem 2.5rem;
-    display: flex;
-    justify-content: space-around;
-    max-width: max-content;
-    margin: 0 auto;
+	border: 1px solid #545454;
+	border-radius: 3px;
+	padding: 40px;
 
+	@media screen and (min-width: 481px) {
+		border-radius: 2rem;
+		padding: 0.5rem 2.5rem;
+		display: flex;
+		justify-content: space-evenly;
+		max-width: 100%;
+		margin: 0 auto;
+	}
 }
 
 .form-button {
-    margin: 0 1rem;
-    border-radius: 50%;
+	margin: 0 1rem;
+	@media screen and (min-width: 481px) {
+		border-radius: 0.5rem;
+	}
 }
 
 .input-wrapper {
-    display: flex;
-    flex-direction: column;
-    // border-right: 2px soild#545454;
-    margin: 0 1rem;
-    & input {
-        // padding: 0.3rem 0;
-        // width: 100%;
-        line-height: 16px;
-        // margin: 0.5rem 0;
-        border: none;
-        max-width: 40ch;
-        color: #6d6767;
-    
-        &:invalid {
-            border-bottom: 3px solid red;
-        }
-        &:focus {
-            border-bottom: 3px solid #545454;
-            outline: none;
-        }
-    }
+	& input {
+		// padding: 0.3rem 0;
+		width: 100%;
+		margin: 10px 0;
+		line-height: 16px;
+		// margin: 0.5rem 0;
+		color: #6d6767;
+
+		&:invalid {
+			border-bottom: 3px solid red;
+		}
+		&:focus {
+			border-bottom: 3px solid #545454;
+			outline: none;
+		}
+	}
+	@media screen and (min-width: 481px) {
+		display: flex;
+		flex-direction: column;
+		// border-right: 2px soild#545454;
+		margin: 0 1rem;
+		& input {
+			border: none;
+			max-width: 40ch;
+			margin: 0;
+		}
+	}
 }
-
-
