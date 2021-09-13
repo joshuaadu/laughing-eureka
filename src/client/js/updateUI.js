@@ -1,7 +1,7 @@
 const updateUI = (data) => {
-    const section = document.querySelector('.trip-display-section')
+	const section = document.querySelector(".trip-display-section");
 
-    section.innerHTML = `
+	section.innerHTML = `
         <div class="trip-info-card">
         <div class="destination-geo-info">
             <img class="destination-image" src="${data.image}" alt="Photo of ${data.name}">
@@ -12,18 +12,16 @@ const updateUI = (data) => {
             <ul class="temp-info">
                 <li class="temp">${data.temp}</li>
                 <li class="">
-                    <img class="destination-image" src="https://www.weatherbit.io/static/img/icons/${data.icon}.png" alt="${data.weather} icon">
+                    <img class="weather-icon" src="https://www.weatherbit.io/static/img/icons/${data.icon}.png" alt="${data.weather} icon">
                 </li>
             </ul>
         </div>
         <div class="weather-highlight-div">
             
         </div>
-        </div>`
+        </div>`;
 
-    console.log(data)
+	console.log(data);
+};
 
-    
-}
-
-export {updateUI}
+export { updateUI };
