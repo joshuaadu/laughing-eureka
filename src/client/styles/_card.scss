@@ -1,8 +1,14 @@
 img {
 	width: 100%;
 }
+
+li + li {
+	margin-top: 0.5rem;
+}
 .trip-info-card {
+	color: #ffffcc;
 	width: 100%;
+	font-size: 1.3rem;
 	display: flex;
 	flex-flow: column nowrap;
 	align-items: center;
@@ -16,14 +22,17 @@ img {
 	}
 }
 
+.destination-geo-info,
+.weather-highlight-div {
+	height: 50vh;
+	width: 100%;
+}
 .destination-geo-info {
 	display: grid;
 	grid-template-rows: repeat(3, 1fr);
 	// grid-template-columns: repeat(3, 1fr);
 	grid-template-columns: max-content 1fr max-content;
-	height: 50vh;
-	color: white;
-	align-items: start;
+	align-items: end;
 
 	& ul {
 		padding: 0.5rem;
@@ -60,5 +69,20 @@ img {
 }
 
 .temp::after {
-	content: " \00B0 C";
+	content: "\2103";
+}
+
+.weather-highlight-div {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: repeat(2, 1fr);
+	background-color: #2a0134;
+	align-items: center;
+	justify-items: center;
+
+	& > ul {
+		grid-row: span 1;
+		grid-column: span 1;
+		text-align: center;
+	}
 }
