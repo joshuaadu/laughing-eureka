@@ -29,13 +29,17 @@ li + li {
 }
 .destination-geo-info {
 	display: grid;
+	background-color: #4c045e;
 	grid-template-rows: repeat(3, 1fr);
 	// grid-template-columns: repeat(3, 1fr);
-	grid-template-columns: max-content 1fr max-content;
+	grid-template-columns: minmax(min-content, max-content) 1fr minmax(
+			min-content,
+			max-content
+		);
 	align-items: end;
 
 	& ul {
-		padding: 0.5rem;
+		padding: 1rem;
 
 		// &:first-child {
 		// 	margin-bottom: 0.5rem;
