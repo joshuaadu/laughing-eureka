@@ -28,7 +28,7 @@ const updateUI = (data) => {
             </ul>
             <ul class="hightlight-block">
                 <li class="title">Air Pressure</li>
-                <li class="value">${data.pressure}</li>
+                <li class="value">${data.pressure}mb</li>
             </ul>
             <ul class="hightlight-block">
                 <li class="title">Humidity</li>
