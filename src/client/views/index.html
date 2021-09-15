@@ -44,39 +44,28 @@
 				</form>
 			</section>
 
-			<section class="trip-display-section">
-				<!-- <div class="trip-info-card">
-                   <div class="destination-geo-info">
-                       <img class="destination-image" src="" alt="">
-                       <div class="main-info">
-                           <p class="destination-name"></p>
-                           <p class="trip-date"></p>
-                       </div>
-                       <div class="temp-info">
-                           <span class="temp-icon"></span>
-                           <span class="temp"></span>
-                       </div>
-                   </div>
-                   <div class="weather-highlight-div">
-
-                   </div>
-               </div> -->
-			</section>
+			<section class="trip-display-section">button.</section>
 		</main>
 
 		<footer>
 			<p>This is a footer</p>
 		</footer>
 		<script>
-			//             if ('serviceWorker' in navigator) {
-			//     window.addEventListener('load', () => {
-			//     navigator.serviceWorker.register('/service-worker.js').then(registration => {
-			//         console.log('SW registered: ', registration);
-			//     }).catch(registrationError => {
-			//     console.log('SW registration failed: ', registrationError);
-			//     });
-			//     });
-			// }
+			if ("serviceWorker" in navigator) {
+				window.addEventListener("load", () => {
+					navigator.serviceWorker
+						.register("/service-worker.js")
+						.then((registration) => {
+							console.log("SW registered: ", registration);
+						})
+						.catch((registrationError) => {
+							console.log(
+								"SW registration failed: ",
+								registrationError
+							);
+						});
+				});
+			}
 		</script>
 	</body>
 </html>
