@@ -45,3 +45,4 @@ const updateUI = (data) => {
 };
 
 export { updateUI };
+// module.exports = updateUI;

@@ -114,3 +114,5 @@ const getDestinationImage = async (destination) => {
 		console.log("error", error);
 	}
 };
+
+module.exports = app;
