@@ -115,4 +115,4 @@ const getDestinationImage = async (destination) => {
 	}
 };
 
-module.exports = app;
+export { app };
