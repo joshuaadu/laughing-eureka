@@ -100,7 +100,7 @@ const getWeatherData = async (lat, lon) => {
 	}
 };
 
-// Get destination image
+// Get destination image by city
 const getDestinationImage = async (destination) => {
 	const apiKey = "20563299-6782c1bd94af4bfd330869f13";
 	const destinationName = destination.name;
@@ -109,10 +109,27 @@ const getDestinationImage = async (destination) => {
 	const response = await fetch(encodeURI(url));
 	try {
 		const result = await response.json();
+		(result.total == 0)? 
+		destination.image = getCountryImage(destination.countryName):
 		destination.image = result.hits[0].webformatURL;
 	} catch (error) {
 		console.log("error", error);
 	}
 };
 
-export { app };
+// Get destination image by country
+const getCountryImage = async (countryName, apiKey) => {
+	const url = `https://pixabay.com/api/?key=${apiKey}&q=${countryName}&category=places&image_type=photo&pretty=true`;
+	const response = await fetch(encodeURI(url));
+	try {
+		// todo: Check and fix error [Unexpected token E in JSON at position 1]
+		const result = await response.json();
+		console.log('country image is ', result) //.hits[0].webformatURL)
+		// return result //.hits[0].webformatURL;
+		// destination.image = result.hits[0].webformatURL;
+	} catch (error) {
+		console.log("country image error", error);
+	}
+}
+
+module.exports = app;
